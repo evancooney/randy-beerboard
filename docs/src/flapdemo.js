@@ -1,3 +1,5 @@
+const MAX_WIDTH = 40;
+
 var FlapBuffer = function(wrap, num_lines) {
     this.wrap = wrap;
     this.num_lines = num_lines;
@@ -53,11 +55,13 @@ var FlapDemo = function(display_selector, click_selector) {
     };
 
     this.opts = {
-        chars_preset: 'alphanum',
+        chars_preset: 'alpha',
         align: 'left',
-        width: 20,
+        width: MAX_WIDTH,
         on_anim_start: onAnimStart,
-        on_anim_end: onAnimEnd
+        on_anim_end: onAnimEnd,
+        timing: 100,
+        transform: false,
     };
 
     this.timers = [];
@@ -103,7 +107,7 @@ FlapDemo.prototype = {
 
     updateDisplay: function(buffers) {
         var _this = this;
-        var timeout = 100;
+        var timeout = 25;
 
         for (i in buffers) {
 
@@ -132,22 +136,56 @@ FlapDemo.prototype = {
 
 $(document).ready(function(){
 
+  function shuffleBoard(json) {
+
+    // skip section headers
+    const justBeers = json.filter(beer => beer.type !== 'MenuSection')
+    // sub slice first 6
+    const randomStart = Math.floor(Math.random() * 11);
+    justBeers.splice(randomStart, 6).map(beer => {
+      const { name, price, id, region, description, beer_type } = beer;
+
+      console.log(beer, 'xl');
+      // add extra whitespace
+      const row1 = name.padEnd(MAX_WIDTH, ' ').slice(0, (MAX_WIDTH - 3)) + `$${price}`
+
+      const input =
+        `<div class="activity"></div>
+         <input class="display XS" value="${row1.toUpperCase()} " />
+         <input class="display XS" value="${beer_type.toUpperCase().trim()}" />
+         <input class="display XS" value="${description}" />
+         <br />
+        `;
+      $(".displays").append(input);
+    });
+
+  }
+
   // Fetch list of beers ( this in parallel)
   // Set skip filters
 
   // Determine character sizes
 
+  // new FlapDemo('input.display');
+
   fetch('https://staging.randolphbeer.com/beerboards/dumbo')
   .then(res => res.json())
   .then(json => {
-    console.log(json);
+
+
+    shuffleBoard(json);
+    setTimeout(() => window.location.href=window.location.href, 10000)
+
+  }).then(() => {
+    new FlapDemo('input.display')
+    console.log('DONE');
   })
 
-  const input = '<div class="activity"></div><input class="display M" value="Mongo Jerry" />';
-  $(".displays").append(input);
+
+
   // .then(json => this.setState({ beers: json }))
   // .then(() => console.log(this.state.beers) );
 
-    new FlapDemo('input.display');
+
 
 });
