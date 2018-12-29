@@ -142,18 +142,20 @@ $(document).ready(function(){
     const justBeers = json.filter(beer => beer.type !== 'MenuSection')
     // sub slice first 6
     const randomStart = Math.floor(Math.random() * 11);
-    justBeers.splice(randomStart, 6).map(beer => {
-      const { name, price, id, region, description, beer_type } = beer;
+    justBeers.splice(randomStart, 12).map(beer => {
+      const { name, price, id, brewery, region, description, beer_type, abv } = beer;
 
       console.log(beer, 'xl');
       // add extra whitespace
-      const row1 = name.padEnd(MAX_WIDTH, ' ').slice(0, (MAX_WIDTH - 3)) + `$${price}`
-
+      const row1 = name.padEnd(MAX_WIDTH, ' ').slice(0, (MAX_WIDTH - 5))
+        + `$${price}`
+      const row2 =
+        `${beer_type} ${brewery.toUpperCase()}`.padEnd(MAX_WIDTH, ' ').slice(0, (MAX_WIDTH - 5))
+        + `%${abv}`
       const input =
         `<div class="activity"></div>
          <input class="display XS" value="${row1.toUpperCase()} " />
-         <input class="display XS" value="${beer_type.toUpperCase().trim()}" />
-         <input class="display XS" value="${description}" />
+         <input class="display XS" value="${row2}" />
          <br />
         `;
       $(".displays").append(input);
