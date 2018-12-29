@@ -147,11 +147,10 @@ $(document).ready(function(){
 
       console.log(beer, 'xl');
       // add extra whitespace
-      const row1 = name.padEnd(MAX_WIDTH, ' ').slice(0, (MAX_WIDTH - 5))
+      const row1 = name.padEnd(MAX_WIDTH, ' ').slice(0, (MAX_WIDTH - 3))
         + `$${price}`
       const row2 =
-        `${beer_type} ${brewery.toUpperCase()}`.padEnd(MAX_WIDTH, ' ').slice(0, (MAX_WIDTH - 5))
-        + `%${abv}`
+        `${brewery.toUpperCase()} ${beer_type} ${abv}%`
       const input =
         `<div class="activity"></div>
          <input class="display XS" value="${row1.toUpperCase()} " />
