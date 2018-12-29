@@ -150,7 +150,7 @@ $(document).ready(function(){
       const row1 = name.padEnd(MAX_WIDTH, ' ').slice(0, (MAX_WIDTH - 3))
         + `$${price}`
       const row2 =
-        `${brewery.toUpperCase()}-${beer_type}-${abv}%`
+        `${brewery.toUpperCase()}-${beer_type.trim()}-${abv}%`
       const input =
         `<div class="activity"></div>
          <input class="display XS" value="${row1.toUpperCase()} " />
@@ -175,7 +175,7 @@ $(document).ready(function(){
 
 
     shuffleBoard(json);
-    setTimeout(() => window.location.href=window.location.href, 10000)
+    setTimeout(() => window.location.href=window.location.href, 20000)
 
   }).then(() => {
     new FlapDemo('input.display')
