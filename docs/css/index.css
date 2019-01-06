@@ -40,6 +40,7 @@ div.inline {
 div.draftline {
   top: 48px;
   left: -15px;
+  padding-top: 2px;
   position: relative;
   color: #000;
   font-size: 26px;
@@ -47,6 +48,6 @@ div.draftline {
   border-radius: 50px;
   background-color: #fff;
   text-align: center;
-  width: 34px;
+  width: 32px;
   height: 32px;
 }
