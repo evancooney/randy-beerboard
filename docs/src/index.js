@@ -1,4 +1,6 @@
-const MAX_WIDTH = 40;
+// SETTINGS
+const MAX_WIDTH = 39;
+const URL = 'https://staging.randolphbeer.com/beerboards/dumbo';
 
 var FlapBuffer = function(wrap, num_lines) {
     this.wrap = wrap;
@@ -136,14 +138,41 @@ FlapDemo.prototype = {
 
 $(document).ready(function(){
 
-  function shuffleBoard(json) {
+  // pepare set 1
+  // prepare set 2
+  //
+
+  function setupBoard() {
+    $( ".displays" ).remove();
+    const div = `<div class="displays"></div>`;
+    $(".page").append(div);
+  }
+
+  function shuffleBoard(json, _toggle) {
+    // flip every other page
+    let startAtDraftLine;
+    if (_toggle) {
+      startAtDraftLine = 11;
+    } else {
+      startAtDraftLine = 0;
+
+    }
 
     // skip section headers
     const justBeers = json.filter(beer => beer.type !== 'MenuSection')
-    // sub slice first 6
-    const randomStart = Math.floor(Math.random() * 11);
-    justBeers.splice(randomStart, 12).map(beer => {
-      const { name, price, id, brewery, region, description, beer_type, abv } = beer;
+
+    justBeers.splice(startAtDraftLine, 12).map(beer => {
+      const {
+        name,
+        price,
+        id,
+        brewery,
+        region,
+        description,
+        beer_type,
+        draft_line,
+        abv
+      } = beer;
 
       console.log(beer, 'xl');
       // add extra whitespace
@@ -152,41 +181,37 @@ $(document).ready(function(){
       const row2 =
         `${brewery.trim().toUpperCase()}-${beer_type.trim()}-${abv}%`
       const input =
-        `<div class="activity"></div>
-         <input class="display XS" value="${row1.toUpperCase()} " />
-         <input class="display XS" value="${row2}" />
-         <br />
+       `<div class="draftline">${draft_line}</div>
+        <input class="display XS" value="${row1.toUpperCase()} " />
+        <input class="display XS" value="${row2}" />
+        <br />
         `;
       $(".displays").append(input);
     });
 
+    new FlapDemo('input.display')
+    return !_toggle; // flip page to alternate
+
   }
 
-  // Fetch list of beers ( this in parallel)
-  // Set skip filters
+  // Core function that will be run over and over
+  const run = (json) => {
+    setupBoard();
+    this.toggle = shuffleBoard(json, this.toggle);
+  }
 
-  // Determine character sizes
-
-  // new FlapDemo('input.display');
-
-  fetch('https://staging.randolphbeer.com/beerboards/dumbo')
+  fetch(URL)
   .then(res => res.json())
   .then(json => {
 
+    let toggle = true;
+    run(json); // first run
 
-    shuffleBoard(json);
-    setTimeout(() => window.location.href=window.location.href, 20000)
+    setInterval(() => {
+      run(json);
+      // window.location.href=window.location.href
+    }, 45000)
 
-  }).then(() => {
-    new FlapDemo('input.display')
-    console.log('DONE');
-  })
-
-
-
-  // .then(json => this.setState({ beers: json }))
-  // .then(() => console.log(this.state.beers) );
-
-
+  });
 
 });
