@@ -5,7 +5,7 @@
 - [ ] Optimize letter space
 - [X] Cycle through 12 at a time
 - [X] Cache results of api calls
-- [ ] Handle errors / especially internet outage
+- [X] Handle errors / especially internet outage
 - [X] Add line numbers to the CMS
 - [X] Sort line numbers in the CMS
 - [ ] Refine CORs policy to prevent DDS

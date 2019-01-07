@@ -1,6 +1,6 @@
 // SETTINGS
 const MAX_WIDTH = 39;
-const URL = 'https://staging.randolphbeer.com/beerboards/dumbo';
+const URL = 'https://www.randolphbeer.com/beerboards/dumbo';
 
 function setupBoard() {
   $( ".displays" ).remove();
