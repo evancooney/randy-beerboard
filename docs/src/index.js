@@ -18,7 +18,7 @@ function secondRow(brewery, beer_type, abv) {
 
 function shuffleBoard(json, _toggle) {
   // flip every other page
-  let startAtDraftLine = _toggle ? 11 : 0;
+  let startAtDraftLine = _toggle ? 12 : 0;
 
   // skip section headers
   const justBeers = json.filter(beer => beer.type !== 'MenuSection')
