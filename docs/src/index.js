@@ -13,7 +13,7 @@ function firstRow(brewery, price) {
 }
 
 function secondRow(beer_name) {
-  return `${beer_name}`.padEnd(MAX_WIDTH, ' ').slice(0, (MAX_WIDTH - 10)) +
+  return `${beer_name.toUpperCase()}`.padEnd(MAX_WIDTH, ' ').slice(0, (MAX_WIDTH - 10)) +
     `$0.${Math.floor(Math.random() * 50) + 50} / oz`
 }
 
@@ -37,7 +37,7 @@ function shuffleBoard(json, _toggle) {
     const input =
      `<div class="draftline">${beer.draft_line}</div>
       <input class="display XS" value="${row1} " />
-      <input class="display XS" value="${row2.toUpperCase()}" />
+      <input class="display XS" value="${row2}" />
       <input class="display XS" value="${row3}" />
       <br />
       `;
