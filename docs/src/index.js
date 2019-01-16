@@ -9,7 +9,7 @@ function setupBoard() {
 }
 
 function firstRow(brewery, price) {
-  return brewery.padEnd(MAX_WIDTH, ' ').slice(0, (MAX_WIDTH - 3)) + `$${price}`
+  return brewery.padEnd(MAX_WIDTH, ' ').slice(0, (MAX_WIDTH - 5)) + `$0.65`
 }
 
 function secondRow(beer_name, abv) {
@@ -17,7 +17,7 @@ function secondRow(beer_name, abv) {
 }
 
 function thirdRow(beer_type) {
-  return `${beer_type}`.padEnd(MAX_WIDTH, ' ').slice(0, (MAX_WIDTH - 5)) + `$0.65`
+  return `${beer_type}`
 }
 
 function shuffleBoard(json, _toggle) {
