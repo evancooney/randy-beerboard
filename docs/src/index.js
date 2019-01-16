@@ -8,12 +8,16 @@ function setupBoard() {
   $(".page").append(div);
 }
 
-function firstRow(name, price) {
-  return name.padEnd(MAX_WIDTH, ' ').slice(0, (MAX_WIDTH - 3)) + `$${price}`
+function firstRow(brewery, price) {
+  return brewery.padEnd(MAX_WIDTH, ' ').slice(0, (MAX_WIDTH - 3)) + `$${price}`
 }
 
-function secondRow(brewery, beer_type, abv) {
-  return `${brewery.trim().toUpperCase()}-${beer_type.trim()}-${abv}%`
+function secondRow(beer_name, abv) {
+  return `${beer_name.toUpperCase()} - ${abv}%`
+}
+
+function thirdRow(beer_type) {
+  return `${beer_type}`.padEnd(MAX_WIDTH, ' ').slice(0, (MAX_WIDTH - 5)) + `$0.65`
 }
 
 function shuffleBoard(json, _toggle) {
@@ -25,13 +29,15 @@ function shuffleBoard(json, _toggle) {
 
   justBeers.splice(startAtDraftLine, 12).map(beer => {
     // add extra whitespace
-    const row1 = firstRow(beer.name, beer.price);
-    const row2 = secondRow(beer.brewery, beer.beer_type, beer.abv);
+    const row1 = firstRow(beer.brewery, beer.price);
+    const row2 = secondRow(beer.name, beer.abv );
+    const row3 = thirdRow(beer.beer_type);
 
     const input =
      `<div class="draftline">${beer.draft_line}</div>
       <input class="display XS" value="${row1.toUpperCase()} " />
       <input class="display XS" value="${row2}" />
+      <input class="display XS" value="${row3}" />
       <br />
       `;
     $(".displays").append(input);
