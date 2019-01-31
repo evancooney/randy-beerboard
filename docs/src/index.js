@@ -39,7 +39,7 @@ function shuffleBoard(json, _toggle) {
       <input class="display XS" value="${row1} " />
       <input class="display XS" value="${row2}" />
       <input class="display XS" value="${row3}" />
-      <br />
+      <div class="spacer" />
       `;
     $(".displays").append(input);
   });

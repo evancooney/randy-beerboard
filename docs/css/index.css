@@ -38,7 +38,7 @@ div.inline {
 }
 
 div.draftline {
-  top: 48px;
+  top: 68px;
   left: -15px;
   padding-top: 2px;
   position: relative;
@@ -50,4 +50,8 @@ div.draftline {
   text-align: center;
   width: 32px;
   height: 32px;
+}
+
+div.spacer {
+  margin-bottom: .75em;
 }
