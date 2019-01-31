@@ -8,13 +8,13 @@ function setupBoard() {
   $(".page").append(div);
 }
 
-function firstRow(brewery, price) {
+function firstRow(brewery) {
   return brewery.toUpperCase()
 }
 
-function secondRow(beer_name) {
+function secondRow(beer_name, price_per_oz) {
   return `${beer_name.toUpperCase()}`.padEnd(MAX_WIDTH, ' ').slice(0, (MAX_WIDTH - 10)) +
-    `$0.${Math.floor(Math.random() * 50) + 50} / oz`
+    `$${price_per_oz || `0.00`} / oz`
 }
 
 function thirdRow(beer_type, abv) {
@@ -30,8 +30,8 @@ function shuffleBoard(json, _toggle) {
 
   justBeers.splice(startAtDraftLine, 12).map(beer => {
     // add extra whitespace
-    const row1 = firstRow(beer.brewery, beer.price);
-    const row2 = secondRow(beer.name );
+    const row1 = firstRow(beer.brewery);
+    const row2 = secondRow(beer.name, beer.price_per_oz );
     const row3 = thirdRow(beer.beer_type, beer.abv);
 
     const input =
