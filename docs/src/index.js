@@ -14,7 +14,7 @@ function firstRow(brewery) {
 
 function secondRow(beer_name, price_per_oz) {
   return `${beer_name.toUpperCase()}`.padEnd(MAX_WIDTH, ' ').slice(0, (MAX_WIDTH - 10)) +
-    `$${price_per_oz || `0.00`} / oz`
+    `$${parseFloat(price_per_oz).toFixed(2) || `0.00`} / oz`
 }
 
 function thirdRow(beer_type, abv) {
