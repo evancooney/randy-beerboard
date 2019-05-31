@@ -1,0 +1,66 @@
+body {
+    font-family: Roboto Condensed;
+    color: #333;
+    background: #000;
+}
+
+.page {
+    width: 1200px;
+    margin: 10px auto 0;
+}
+
+h1 {
+    text-align: center;
+    font-size: 24px;
+}
+
+.displays {
+    padding: 30px;
+    border: 10px solid #ccc;
+    background-color: #222;
+    border-radius: 30px;
+    box-shadow: 0 0 12px 4px #000 inset;
+}
+
+.flapper {
+    margin-bottom: 2px;
+    margin-left: 30px;
+    text-align: center;
+}
+
+.inputarea {
+    margin: 24px 0;
+}
+
+div.inline {
+    display: inline-block;
+    vertical-align: bottom;
+}
+
+div.draftline {
+  top: 68px;
+  left: -15px;
+  padding-top: 2px;
+  position: relative;
+  color: #000;
+  font-size: 26px;
+  font-weight: 900;
+  border-radius: 50px;
+  background-color: #fff;
+  text-align: center;
+  width: 32px;
+  height: 32px;
+}
+
+div.spacer {
+  margin-bottom: .75em;
+}
+
+footer {
+  margin-top: 1.5em;
+  text-align: center;
+}
+
+footer img {
+  height: 200px;
+}
